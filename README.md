@@ -1,5 +1,10 @@
 # todo-apps
-> A simple todo apps website using DOM. 
+> A simple todo apps website using DOM.
+
+- [Technologies](#Technologies)
+- [Run](#Run)
+- [Author](#Author)
+- [Reference](#Reference)
 
 ## Technologies
 - HTML5
