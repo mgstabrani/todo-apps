@@ -28,7 +28,10 @@ function makeTodo(data, timestamp, isCompleted) {
     container.append(textContainer);
     
     if(isCompleted){
-        container.append(createTrashButton());
+        container.append(
+            createUndoButton(),
+            createTrashButton()
+        );
     } else{
         container.append(createCheckButton());
     }
@@ -68,5 +71,22 @@ function removeTaskFromCompleted(taskElement) {
 function createTrashButton() {
     return createButton("trash-button", function(event){
         removeTaskFromCompleted(event.target.parentElement);
+    });
+}
+
+function undoTaskFromCompleted(taskElement){
+    const listUncompleted = document.getElementById(UNCOMPLETED_LIST_TODO_ID);
+    const taskTitle = taskElement.querySelector(".inner > h2").innerText;
+    const taskTimestamp = taskElement.querySelector(".inner > p").innerText;
+ 
+    const newTodo = makeTodo(taskTitle, taskTimestamp, false);
+ 
+    listUncompleted.append(newTodo);
+    taskElement.remove();
+}
+
+function createUndoButton() {
+    return createButton("undo-button", function(event){
+        undoTaskFromCompleted(event.target.parentElement);
     });
 }
